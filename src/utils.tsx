@@ -1,6 +1,6 @@
 import isEqual from 'lodash.isequal';
 import { MathfieldConfig } from "mathlive";
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import { renderToString } from "react-dom/server";
 import { MathViewProps, MathViewRef } from "./types";
 
@@ -141,30 +141,35 @@ export function filterConfig(props: MathViewProps) {
  * Mathfield resets caret position when value is set imperatively (not while editing).
  * This is why we need to set caret position for controlled math view after value has been changed.
  */
-export function useControlledConfig(value: string, { onContentWillChange, onContentDidChange, ...props }: ReturnType<typeof filterConfig>[0]) {
-  const position = useRef<{ x: number, y: number } | null>(null);
-  const _value = useRef<string>(value || '');
-  //  save caret position if necessary
-  const _onContentWillChange = useCallback<MathfieldConfig['onContentWillChange']>((sender) => {
-    const p = _value.current !== value && sender.getCaretPoint && sender.getCaretPoint();
-    p && (position.current = p);
-    onContentWillChange && onContentWillChange(sender);
-  }, [onContentWillChange, value]);
-  //  set caret position if necessary
-  const _onContentDidChange = useCallback<MathfieldConfig['onContentDidChange']>((sender) => {
-    position.current && sender.setCaretPoint(position.current.x, position.current.y);
-    onContentDidChange && onContentDidChange(sender)
-  }, [onContentDidChange]);
-  //  update _value
-  useEffect(() => {
-    _value.current = value || '';
-  }, [value]);
-  return {
-    ...props,
-    onContentWillChange: _onContentWillChange,
-    onContentDidChange: _onContentDidChange
-  }
-}
+/**
+ * 
+ * 6/3/22 - comment out because we can't even get value change for each input, so how can we set the value state which would be passed into this Component via 'value' field. If that's the case, what is the point of having this fix for caret position? If we don't pass in onContentDidChange, onChange and onInput will work normally but we cannot set it to the value state as it will cause caret position to be reset. But with below, again onInput, onchange will not work. It's a loop!
+ */
+
+// export function useControlledConfig(value: string, { onContentWillChange, onContentDidChange, ...props }: ReturnType<typeof filterConfig>[0]) {
+//   const position = useRef<{ x: number, y: number } | null>(null);
+//   const _value = useRef<string>(value || '');
+//   //  save caret position if necessary
+//   const _onContentWillChange = useCallback<MathfieldConfig['onContentWillChange']>((sender) => {
+//     const p = _value.current !== value && sender.getCaretPoint && sender.getCaretPoint();
+//     p && (position.current = p);
+//     onContentWillChange && onContentWillChange(sender);
+//   }, [onContentWillChange, value]);
+//   //  set caret position if necessary
+//   const _onContentDidChange = useCallback<MathfieldConfig['onContentDidChange']>((sender) => {
+//     position.current && sender.setCaretPoint(position.current.x, position.current.y);
+//     onContentDidChange && onContentDidChange(sender)
+//   }, [onContentDidChange]);
+//   //  update _value
+//   useEffect(() => {
+//     _value.current = value || '';
+//   }, [value]);
+//   return {
+//     ...props,
+//     onContentWillChange: _onContentWillChange,
+//     onContentDidChange: _onContentDidChange
+//   }
+// }
 
 /**
  * Performance Optimization
