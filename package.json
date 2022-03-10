@@ -1,10 +1,13 @@
 {
-  "name": "react-math-view",
-  "version": "1.3.2",
+  "name": "@edpi/react-math-view",
+  "version": "2.0.0",
   "description": "React bindings for MathLive",
   "author": "ShaMan123",
   "license": "MIT",
-  "repository": "ShaMan123/react-math-view",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShaMan123/react-math-view.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
@@ -67,5 +70,12 @@
   "dependencies": {
     "lodash.isequal": "^4.5.0",
     "mathlive": ">=0.64.0"
+  },
+  "bugs": {
+    "url": "https://github.com/ShaMan123/react-math-view/issues"
+  },
+  "homepage": "https://github.com/ShaMan123/react-math-view#readme",
+  "directories": {
+    "example": "example"
   }
 }
