@@ -1,5 +1,5 @@
 {
-  "name": "@edpi/react-math-view",
+  "name": "@chenglu/react-math-view",
   "version": "2.0.0",
   "description": "React bindings for MathLive",
   "author": "ShaMan123",
@@ -69,7 +69,7 @@
   ],
   "dependencies": {
     "lodash.isequal": "^4.5.0",
-    "mathlive": "0.64.0"
+    "mathlive": "0.69.11"
   },
   "bugs": {
     "url": "https://github.com/ShaMan123/react-math-view/issues"
