@@ -68,8 +68,9 @@
     "dist"
   ],
   "dependencies": {
+    "@webcomponents/custom-elements": "^1.5.0",
     "lodash.isequal": "^4.5.0",
-    "mathlive": "0.69.11"
+    "mathlive": ">=0.64.0"
   },
   "bugs": {
     "url": "https://github.com/ShaMan123/react-math-view/issues"

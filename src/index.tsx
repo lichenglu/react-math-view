@@ -1,3 +1,6 @@
+// support use in browser extensions
+import '@webcomponents/custom-elements'
+
 import { MathfieldElement } from 'mathlive';
 import 'mathlive/dist/mathlive.mjs';
 import React, { useImperativeHandle, useMemo, useRef } from 'react';
